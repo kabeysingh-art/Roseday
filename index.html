@@ -4,98 +4,147 @@
 <meta charset="UTF-8">
 <title>For Sneha 🌹</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(#ffd1dc, #fff);
-  text-align:center;
+  font-family:'Quicksand',sans-serif;
+  background:radial-gradient(circle,#ffe0ec,#fff);
   overflow:hidden;
+  text-align:center;
+  color:#5a2a3a;
 }
-
 .page{
   display:none;
+  min-height:100vh;
   padding:30px;
+  animation:fade .8s ease;
+}
+.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-.active{
-  display:block;
+h1,h2{
+  font-family:'Pacifico',cursive;
+  color:#ff4f7b;
 }
 
 button{
-  padding:12px 22px;
+  padding:14px 30px;
   border:none;
-  border-radius:25px;
-  background:#ff4f7b;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff4f7b,#ff85a2);
   color:white;
   font-size:16px;
   cursor:pointer;
+  box-shadow:0 10px 20px rgba(255,79,123,.3);
 }
 
 .photos img{
-  width:150px;
-  border-radius:15px;
+  width:160px;
   margin:10px;
+  border-radius:18px;
+  box-shadow:0 8px 18px rgba(0,0,0,.15);
 }
 
+/* Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  color:#ff5c8a;
+  animation:float linear infinite;
+}
+@keyframes float{
+  0%{transform:translateY(0);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(-120vh);opacity:0}
+}
+
+/* Roses */
 .flower{
   width:80px;
   position:absolute;
   cursor:pointer;
 }
-
-#roseImg{
-  width:180px;
-  position:absolute;
-  right:20px;
-  top:120px;
+.big-heart{
+  width:260px;
+  height:260px;
+  background:#ff6f91;
+  border-radius:50%;
+  margin:40px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 20px 40px rgba(255,79,123,.4);
+}
+.big-heart img{
+  width:140px;
 }
 </style>
 </head>
 
 <body>
 
+<script>
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(14+Math.random()*20)+"px";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},300);
+</script>
+
 <!-- PAGE 1 -->
-<div id="page1" class="page active">
-  <h2>Today is 7th February 🌹</h2>
-  <p>If you are Sneha, click here</p>
+<div id="p1" class="page active">
+  <h1>If you love me ❤️</h1>
+  <p>Open for the special day</p>
+  <button onclick="go(2)">Open</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="p2" class="page">
+  <h1>Happy Rose Day 🌹</h1>
+  <p>Catch all the roses</p>
+
+  <div class="big-heart">
+    <img src="rose.jpg">
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div id="p3" class="page">
+  <h1>From My Heart 💌</h1>
+  <p>
+    On 18th August, when I gave you a rose for the first time,  
+    I didn’t know how deep this bond would become.  
+    <br><br>
+    Feelings didn’t change — they grew stronger.  
+    Day by day, moment by moment.  
+    <br><br>
+    I want to take this far…  
+    And I want to give you a rose every Rose Day, only you.
+  </p>
 
   <div class="photos">
     <img src="photo1.jpg">
-    <img src="photo2.jpg">
     <img src="photo3.jpg">
     <img src="photo4.jpg">
   </div>
 
-  <button onclick="go(2)">Click Here</button>
-</div>
-
-<!-- PAGE 2 -->
-<div id="page2" class="page">
-  <h2>Catch all the flowers 🌸</h2>
-  <p>Click all flowers to continue</p>
-</div>
-
-<!-- PAGE 3 -->
-<div id="page3" class="page">
-  <h1>Happy Rose Day Sneha ❤️</h1>
-  <img src="rose.jpg" id="roseImg">
   <button onclick="go(4)">Next</button>
 </div>
 
 <!-- PAGE 4 -->
-<div id="page4" class="page">
-  <h2>For You 💌</h2>
-  <p>
-    (Write your letter here) <br><br>
-    You can write anything emotional, romantic, sorry, or loving.
-  </p>
-  <button onclick="go(5)">Next</button>
-</div>
-
-<!-- PAGE 5 -->
-<div id="page5" class="page">
-  <h2>Always You ❤️</h2>
+<div id="p4" class="page">
+  <h1>Our Memories ❤️</h1>
   <div class="photos">
     <img src="photo1.jpg">
     <img src="photo2.jpg">
@@ -105,20 +154,18 @@ button{
 </div>
 
 <script>
-let collected = 0;
-const total = 4;
+let collected=0,total=4;
 
 function go(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page'+n).classList.add('active');
-
-  if(n===2) startGame();
+  document.getElementById("p"+n).classList.add('active');
+  if(n===2)startGame();
 }
 
 function startGame(){
-  const p = document.getElementById('page2');
+  collected=0;
   for(let i=0;i<total;i++){
-    let f = document.createElement('img');
+    let f=document.createElement("img");
     f.src="flower.jpg";
     f.className="flower";
     f.style.left=Math.random()*80+"%";
@@ -130,7 +177,7 @@ function startGame(){
         setTimeout(()=>go(3),700);
       }
     };
-    p.appendChild(f);
+    document.getElementById("p2").appendChild(f);
   }
 }
 </script>
