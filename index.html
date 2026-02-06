@@ -1,88 +1,102 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Sneha 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rose Day ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  font-family:'Quicksand',sans-serif;
-  background:radial-gradient(circle,#ffe0ec,#fff);
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#ffe3ec,#fff);
   overflow:hidden;
   text-align:center;
-  color:#5a2a3a;
 }
 .page{
   display:none;
   min-height:100vh;
-  padding:30px;
-  animation:fade .8s ease;
+  padding:20px;
 }
-.active{display:block}
+.active{display:flex;flex-direction:column;justify-content:center;align-items:center}
 
-@keyframes fade{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-h1,h2{
-  font-family:'Pacifico',cursive;
+h1{
+  font-family:'Great Vibes',cursive;
   color:#ff4f7b;
+  font-size:48px;
 }
+p{font-size:16px;color:#5a2a3a}
 
 button{
-  padding:14px 30px;
+  margin-top:20px;
+  padding:14px 32px;
   border:none;
-  border-radius:30px;
-  background:linear-gradient(135deg,#ff4f7b,#ff85a2);
+  border-radius:40px;
+  background:#ff4f7b;
   color:white;
   font-size:16px;
   cursor:pointer;
-  box-shadow:0 10px 20px rgba(255,79,123,.3);
-}
-
-.photos img{
-  width:160px;
-  margin:10px;
-  border-radius:18px;
-  box-shadow:0 8px 18px rgba(0,0,0,.15);
 }
 
 /* Hearts */
 .heart{
   position:fixed;
   bottom:-20px;
-  color:#ff5c8a;
-  animation:float linear infinite;
+  color:#ff6f91;
+  animation:float 7s linear infinite;
 }
 @keyframes float{
-  0%{transform:translateY(0);opacity:0}
-  10%{opacity:1}
-  100%{transform:translateY(-120vh);opacity:0}
+  to{transform:translateY(-120vh);opacity:0}
 }
 
-/* Roses */
+/* Heart opening */
+.heart-box{
+  width:200px;height:200px;
+  background:#ff4f7b;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+}
+.heart-box img{
+  width:0;
+  transition:1s;
+}
+.open img{width:120px}
+
+/* Game */
 .flower{
-  width:80px;
+  width:110px;
   position:absolute;
   cursor:pointer;
 }
-.big-heart{
-  width:260px;
-  height:260px;
-  background:#ff6f91;
-  border-radius:50%;
-  margin:40px auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 20px 40px rgba(255,79,123,.4);
+
+/* Letter */
+.letter{
+  background:#fff;
+  padding:25px;
+  max-width:320px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
-.big-heart img{
-  width:140px;
+.photos img{
+  width:90px;
+  border-radius:10px;
+  margin:6px;
+}
+
+/* Final */
+.final-rose{
+  width:220px;
+}
+.fade-love{
+  position:absolute;
+  font-size:80px;
+  color:rgba(255,79,123,.08);
+  font-family:'Great Vibes',cursive;
 }
 </style>
 </head>
@@ -96,88 +110,91 @@ setInterval(()=>{
   h.innerHTML="❤";
   h.style.left=Math.random()*100+"vw";
   h.style.fontSize=(14+Math.random()*20)+"px";
-  h.style.animationDuration=(4+Math.random()*4)+"s";
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
-},300);
+  setTimeout(()=>h.remove(),7000);
+},400);
 </script>
 
 <!-- PAGE 1 -->
-<div id="p1" class="page active">
-  <h1>If you love me ❤️</h1>
-  <p>Open for the special day</p>
+<div class="page active" id="p1">
+  <h1>Click here for the special day ❤️</h1>
   <button onclick="go(2)">Open</button>
 </div>
 
 <!-- PAGE 2 -->
-<div id="p2" class="page">
-  <h1>Happy Rose Day 🌹</h1>
-  <p>Catch all the roses</p>
-
-  <div class="big-heart">
-    <img src="rose.jpg">
+<div class="page" id="p2">
+  <h1>From my heart…</h1>
+  <div class="heart-box" onclick="openHeart(this)">
+    <img src="flower.jpg">
   </div>
 </div>
 
 <!-- PAGE 3 -->
-<div id="p3" class="page">
-  <h1>From My Heart 💌</h1>
-  <p>
-    On 18th August, when I gave you a rose for the first time,  
-    I didn’t know how deep this bond would become.  
-    <br><br>
-    Feelings didn’t change — they grew stronger.  
-    Day by day, moment by moment.  
-    <br><br>
-    I want to take this far…  
-    And I want to give you a rose every Rose Day, only you.
-  </p>
-
-  <div class="photos">
-    <img src="photo1.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
-  </div>
-
-  <button onclick="go(4)">Next</button>
+<div class="page" id="p3">
+  <h1>Happy Rose Day 🌹</h1>
+  <p>Catch all the roses</p>
 </div>
 
 <!-- PAGE 4 -->
-<div id="p4" class="page">
-  <h1>Our Memories ❤️</h1>
-  <div class="photos">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
+<div class="page" id="p4">
+  <div class="letter">
+    <p>
+      On 18th August, when I gave you the first rose,  
+      I didn’t know how far this would go.  
+      <br><br>
+      Today, feelings are the same —  
+      the bond is stronger.  
+      <br><br>
+      I want to celebrate every Rose Day with you.
+    </p>
+    <div class="photos">
+      <img src="photo1.jpg">
+      <img src="photo3.jpg">
+      <img src="photo4.jpg">
+    </div>
   </div>
+  <button onclick="go(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <div class="fade-love">I love you</div>
+  <img src="rose.jpg" class="final-rose">
+  <h1>Happy Rose Day</h1>
+  <p>The first rose I gave you…  
+  and the rose I give you today ❤️</p>
 </div>
 
 <script>
-let collected=0,total=4;
+let total=4,done=0;
 
 function go(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById("p"+n).classList.add('active');
-  if(n===2)startGame();
+  if(n===3)startGame();
+}
+
+function openHeart(el){
+  el.classList.add("open");
+  setTimeout(()=>go(3),1200);
 }
 
 function startGame(){
-  collected=0;
+  done=0;
   for(let i=0;i<total;i++){
     let f=document.createElement("img");
     f.src="flower.jpg";
     f.className="flower";
-    f.style.left=Math.random()*80+"%";
+    f.style.left=Math.random()*70+"%";
     f.style.top=Math.random()*60+"%";
     f.onclick=()=>{
       f.remove();
-      collected++;
-      if(collected===total){
-        setTimeout(()=>go(3),700);
+      done++;
+      if(done===total){
+        setTimeout(()=>go(4),700);
       }
     };
-    document.getElementById("p2").appendChild(f);
+    document.getElementById("p3").appendChild(f);
   }
 }
 </script>
