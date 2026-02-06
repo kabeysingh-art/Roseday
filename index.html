@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Sneha 🌹</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(#ffd1dc, #fff);
+  text-align:center;
+  overflow:hidden;
+}
+
+.page{
+  display:none;
+  padding:30px;
+}
+
+.active{
+  display:block;
+}
+
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  background:#ff4f7b;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.photos img{
+  width:150px;
+  border-radius:15px;
+  margin:10px;
+}
+
+.flower{
+  width:80px;
+  position:absolute;
+  cursor:pointer;
+}
+
+#roseImg{
+  width:180px;
+  position:absolute;
+  right:20px;
+  top:120px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+  <h2>Today is 7th February 🌹</h2>
+  <p>If you are Sneha, click here</p>
+
+  <div class="photos">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+
+  <button onclick="go(2)">Click Here</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <h2>Catch all the flowers 🌸</h2>
+  <p>Click all flowers to continue</p>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+  <h1>Happy Rose Day Sneha ❤️</h1>
+  <img src="rose.jpg" id="roseImg">
+  <button onclick="go(4)">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="page">
+  <h2>For You 💌</h2>
+  <p>
+    (Write your letter here) <br><br>
+    You can write anything emotional, romantic, sorry, or loving.
+  </p>
+  <button onclick="go(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div id="page5" class="page">
+  <h2>Always You ❤️</h2>
+  <div class="photos">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+</div>
+
+<script>
+let collected = 0;
+const total = 4;
+
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+n).classList.add('active');
+
+  if(n===2) startGame();
+}
+
+function startGame(){
+  const p = document.getElementById('page2');
+  for(let i=0;i<total;i++){
+    let f = document.createElement('img');
+    f.src="flower.jpg";
+    f.className="flower";
+    f.style.left=Math.random()*80+"%";
+    f.style.top=Math.random()*60+"%";
+    f.onclick=()=>{
+      f.remove();
+      collected++;
+      if(collected===total){
+        setTimeout(()=>go(3),700);
+      }
+    };
+    p.appendChild(f);
+  }
+}
+</script>
+
+</body>
+</html>
